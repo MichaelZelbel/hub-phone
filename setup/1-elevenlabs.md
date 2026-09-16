@@ -37,3 +37,12 @@ Make a key that can do only what this add-on needs.
 
 If you lose the key, make a new one here and delete the old one; then delete
 `/etc/hub-phone/credentials.env` on the server and run the installer again.
+
+## What ElevenLabs keeps
+
+No audio is recorded: the add-on asks for that on every call and on the agent. The text of
+each conversation stays in your ElevenLabs workspace, where you and your assistant read it
+back. Once the installer has created the **Hub phone** agent, open it, find its privacy or
+security settings, and set how many days transcripts are kept. The author set seven. Check
+the setting rather than trusting this page: the provider decides what its retention options
+mean, and the screen may have changed.

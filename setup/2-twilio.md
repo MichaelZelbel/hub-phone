@@ -15,7 +15,8 @@ check asks for; the shape of the steps is the same.
 2. Confirm your email and your phone number as the sign-up asks.
 3. **Upgrade** the account and add a payment method. A trial account can call only numbers
    you have verified, and the restaurant is not one of them. Twilio is pay as you go; the
-   author put in twenty US dollars, and a call inside Germany costs a few cents a minute.
+   author put in twenty US dollars. Look up the per-minute rate for calls in your country on
+   Twilio's price page before you decide how much to add.
 4. Complete the **regulatory compliance** or **identity** step for your country when Twilio
    asks for it. For Germany the author's individual profile had to show *Approved* before an
    outgoing call worked; before that, calls failed with a permission error that says nothing

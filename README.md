@@ -34,8 +34,8 @@ calls an emergency number, and the service refuses the sixth call of a day.
 4. That number imported into ElevenLabs: [setup/3-import-number.md](setup/3-import-number.md).
 
 Cost, as of September 2026: a two-minute call was about 1,300 ElevenLabs credits plus a few
-hundred for the language model, and a few cents of Twilio time. Check both price pages
-before you decide.
+hundred for the language model, and Twilio's per-minute rate for your country on top. Check
+both price pages before you decide.
 
 ## Install
 
