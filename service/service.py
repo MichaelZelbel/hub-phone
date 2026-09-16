@@ -69,7 +69,11 @@ def rpc(request):
                     'configured': bool(phone.setting('AGENT_ID') and phone.setting('NUMBER_ID')),
                     'calls_today': dialed_today(db), 'daily_limit': int(phone.setting('DAILY_LIMIT', '5'))}
         if action == 'prepare':
-            job = validate(request['body'])
+            # The order alone. The person's words and the source are submit's business.
+            body = request['body']
+            job = phone.validate_job(body.get('job') if isinstance(body, dict) else None)
+            if body.get('approved_fingerprint') != phone.fingerprint(job):
+                raise ValueError('The approval belongs to a different order.')
             return {'job_id': job['job_id'], 'fingerprint': phone.fingerprint(job), 'call_started': False}
         if action == 'submit':
             body = request['body']

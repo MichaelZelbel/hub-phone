@@ -35,10 +35,19 @@ class ServiceTests(unittest.TestCase):
         self.assertEqual(out['daily_limit'], 5)
         self.assertFalse(out['worker_recent'])
 
-    def test_prepare_validates_without_queueing(self):
+    def test_prepare_validates_without_queueing_and_without_the_words(self):
+        # Found by Hermes on 2026-09-16: prepare must not demand what only submit needs.
+        self.body['authorization'] = ''
+        self.body['source'] = ''
         out = service.rpc({'action': 'prepare', 'body': self.body})
         self.assertFalse(out['call_started'])
         self.assertEqual(service.rpc({'action': 'list'})['jobs'], [])
+
+    def test_prepare_still_refuses_a_bad_order(self):
+        self.body['job']['to_number'] = '+49112'
+        self.body['approved_fingerprint'] = call.fingerprint(self.body['job'])
+        with self.assertRaisesRegex(ValueError, 'emergency'):
+            service.rpc({'action': 'prepare', 'body': self.body})
 
     def test_authorization_is_required(self):
         self.body['authorization'] = ''
