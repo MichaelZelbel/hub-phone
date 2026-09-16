@@ -20,8 +20,8 @@ example under `/tmp/`:
 
 - `job_id`: new every time, lowercase, like `restaurant-20261003-1900`. A reused id is refused.
 - `mode`: `live`. (`rehearsal` calls the person's own number, only for testing.)
-- `to_number`: exactly the number the person gave, in international form (`+49...`). If they
-  gave none, look in the hub's own files or the contact's own website. Never invent a number.
+- `to_number`: exactly the number the person gave, in international form, digits only, no
+  spaces or brackets (`+49301234567`, not `+49 30 1234567`). If they gave none, look in the hub's own files or the contact's own website. Never invent a number.
   Emergency numbers are refused by the service; no errand needs one.
 - `name`: the person's name. `contact`: who is being called. `goal`: one sentence.
 - `date`, `time`, `party_size` go in their own fields when the person stated them, never only
