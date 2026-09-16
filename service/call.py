@@ -125,7 +125,8 @@ def agent_config():
             'prompt': {'prompt': template, 'llm': setting('MODEL', 'gemini-2.5-flash'), 'temperature': 0,
                 'thinking_budget': 0,
                 'built_in_tools': {'end_call': {'name': 'end_call', 'params': {'system_tool_type': 'end_call'}}}}},
-        'tts': {'model_id': 'eleven_flash_v2_5', 'pronunciation_dictionary_locators': [], 'enable_phoneme_tags': False},
+        # English agents must use turbo v2 or flash v2 (ElevenLabs refuses v2.5 for 'en' with a 400).
+        'tts': {'model_id': 'eleven_flash_v2', 'pronunciation_dictionary_locators': [], 'enable_phoneme_tags': False},
         'turn': {'initial_wait_time': -1, 'turn_timeout': -1, 'turn_eagerness': 'eager',
             'speculative_turn': True, 'silence_end_call_timeout': 30},
         'conversation': {'max_duration_seconds': int(setting('MAX_SECONDS', '180'))}},

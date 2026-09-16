@@ -79,12 +79,14 @@ ask_secret() {   # $1 prompt -> stdout
   printf '%s' "$answer"
 }
 
-conf_get() { [ -f "$CONF" ] && sed -n "s/^HUB_PHONE_$1=//p" "$CONF" | tail -1; }
+# Values are written in double quotes, which systemd's EnvironmentFile strips, so a name
+# with a space in it survives both systemd and a shell that sources the file.
+conf_get() { [ -f "$CONF" ] && sed -n "s/^HUB_PHONE_$1=//p" "$CONF" | tail -1 | sed -e 's/^"//' -e 's/"$//'; }
 conf_set() {   # $1 NAME  $2 value
   mkdir -p /etc/hub-phone; chmod 700 /etc/hub-phone
   touch "$CONF"
   sed -i "/^HUB_PHONE_$1=/d" "$CONF"
-  printf 'HUB_PHONE_%s=%s\n' "$1" "$2" >> "$CONF"
+  printf 'HUB_PHONE_%s="%s"\n' "$1" "$2" >> "$CONF"
   chmod 600 "$CONF"
 }
 

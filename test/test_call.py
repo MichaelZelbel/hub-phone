@@ -169,6 +169,8 @@ class ApiTests(unittest.TestCase):
         self.assertIn('{{caller_name}}', config['agent']['prompt']['prompt'])
         self.assertIn('AI assistant', config['agent']['prompt']['prompt'])
         self.assertEqual(config['conversation']['max_duration_seconds'], 180)
+        # ElevenLabs refuses an English agent on the v2.5 voice model (checked live 2026-09-16).
+        self.assertEqual(config['tts']['model_id'], 'eleven_flash_v2')
 
 
 if __name__ == '__main__':

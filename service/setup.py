@@ -90,7 +90,7 @@ def write_setting(name, value, path=CONFIG_FILE):
     if os.path.exists(path):
         with open(path, encoding='utf-8') as f:
             lines = [l for l in f.read().splitlines() if not l.startswith(key + '=')]
-    lines.append('%s=%s' % (key, value))
+    lines.append('%s="%s"' % (key, value))  # quoted: systemd strips the quotes, and so does a shell
     with open(path, 'w', encoding='utf-8') as f:
         f.write('\n'.join(lines) + '\n')
     os.chmod(path, 0o600)

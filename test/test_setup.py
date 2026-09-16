@@ -72,9 +72,9 @@ class SetupTests(unittest.TestCase):
             setup.write_setting('NUMBER_ID', 'phnum_9', str(path))
             text = path.read_text()
         self.assertIn('HUB_PHONE_CALLER_NAME=Sam\n', text)
-        self.assertIn('HUB_PHONE_AGENT_ID=new\n', text)
+        self.assertIn('HUB_PHONE_AGENT_ID="new"\n', text)
         self.assertNotIn('old', text)
-        self.assertIn('HUB_PHONE_NUMBER_ID=phnum_9\n', text)
+        self.assertIn('HUB_PHONE_NUMBER_ID="phnum_9"\n', text)
 
 
 if __name__ == '__main__':

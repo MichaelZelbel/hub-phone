@@ -16,7 +16,9 @@ import sqlite3
 import sys
 import time
 
-import call as phone
+# The units run python3 -I, which keeps the script's own folder OFF the import path.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import call as phone  # noqa: E402
 
 BASE = Path('/var/lib/hub-phone')
 REVIEW = ('Check what the other party actually said against the order: date, time, party size, or the '
