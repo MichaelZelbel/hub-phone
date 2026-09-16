@@ -1,0 +1,16 @@
+[Unit]
+Description=hub-phone worker: dials the queued errands, one at a time
+After=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/hub-phone/config.env
+EnvironmentFile=/etc/hub-phone/credentials.env
+ExecStart=/usr/bin/python3 /opt/hub-phone/service.py worker
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
